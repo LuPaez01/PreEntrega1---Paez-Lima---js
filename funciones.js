@@ -1,20 +1,51 @@
-let operador = prompt ('Que operacion quiere relaizar? 1- Sumar 2- Restar 3- Multiplicar 4- Dividir')
-let numero1= Number(prompt('Ingrese el primer numero'))
-let numero2= Number(prompt('Ingrese el segundo numero'))
-let total;
+const operaciones = ["Suma", "Resta", "Multiplicación", "División"];
 
-if(operador == 1){
-    total = numero1+numero2
-    alert('El resultado de la suma es de'+total )
-}else if(operador ==2){
-    total = numero1-numero2
-    alert('El resultado de la resta es de'+total )
-}else if(operador ==3){
-    total = numero1*numero2
-    alert('El resultado de la multiplicacion es de'+total )
-}else if(operador ==4){
-    total = numero1/numero2
-    alert('El resultado de la division es de'+total )
-}else(
-    alert('Opcion incorrecta')
-)
+        
+function iniciarCalculadora() {
+    
+    const operacionSeleccionada = prompt(`Seleccione una operación: 
+        ${operaciones.join("\n")}`);
+
+   
+    const indiceOperacion = operaciones.indexOf(operacionSeleccionada);
+
+    if (indiceOperacion !== -1) {
+        
+        const num1 = parseFloat(prompt("Ingrese el primer número: "));
+        const num2 = parseFloat(prompt("Ingrese el segundo número: "));
+
+        
+        const resultado = realizarOperacion(indiceOperacion, num1, num2);
+
+        
+        alert(`Resultado: ${resultado}`);
+    } else {
+        alert("Operación no valida");
+    }
+}
+
+
+function realizarOperacion(indiceOperacion, num1, num2) {
+    switch (indiceOperacion) {
+        case 0:
+            return num1 + num2;
+        case 1:
+            return num1 - num2;
+        case 2:
+            return num1 * num2;
+        case 3:
+            return num1 / num2;
+        default:
+            return "Operación no valida";
+    }
+}
+
+
+function buscarEnArray(arr, valor) {
+    return arr.indexOf(valor);
+}
+
+
+function filtrarArray(arr, predicado) {
+    return arr.filter(predicado);
+}
