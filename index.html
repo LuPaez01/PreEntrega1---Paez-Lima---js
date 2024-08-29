@@ -7,8 +7,17 @@
 </head>
 <body>
     <h1>Calculadora</h1>
-    <button onclick="iniciarCalculadora()">Iniciar Calculadora</button>
+    <input type="number" id="num1" placeholder="Número 1">
+    <select id="operacion">
+        <option value="+">Suma</option>
+        <option value="-">Resta</option>
+        <option value="*">Multiplicación</option>
+        <option value="/">División</option>
+    </select>
+    <input type="number" id="num2" placeholder="Número 2">
+    <button id="calcular">Calcular</button>
+    <p id="resultado"></p>
 
-    <script src="funciones.js"></script>
+    <script src="calculadora.js"></script>
 </body>
 </html>

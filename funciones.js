@@ -1,51 +1,54 @@
-const operaciones = ["Suma", "Resta", "Multiplicación", "División"];
-
-        
-function iniciarCalculadora() {
-    
-    const operacionSeleccionada = prompt(`Seleccione una operación: 
-        ${operaciones.join("\n")}`);
-
-   
-    const indiceOperacion = operaciones.indexOf(operacionSeleccionada);
-
-    if (indiceOperacion !== -1) {
-        
-        const num1 = parseFloat(prompt("Ingrese el primer número: "));
-        const num2 = parseFloat(prompt("Ingrese el segundo número: "));
-
-        
-        const resultado = realizarOperacion(indiceOperacion, num1, num2);
-
-        
-        alert(`Resultado: ${resultado}`);
-    } else {
-        alert("Operación no valida");
-    }
-}
+const num1Input = document.getElementById('num1');
+const operacionSelect = document.getElementById('operacion');
+const num2Input = document.getElementById('num2');
+const calcularButton = document.getElementById('calcular');
+const resultadoP = document.getElementById('resultado');
 
 
-function realizarOperacion(indiceOperacion, num1, num2) {
-    switch (indiceOperacion) {
-        case 0:
-            return num1 + num2;
-        case 1:
-            return num1 - num2;
-        case 2:
-            return num1 * num2;
-        case 3:
-            return num1 / num2;
+calcularButton.addEventListener('click', calcular);
+
+
+function calcular() {
+    const num1 = parseFloat(num1Input.value);
+    const operacion = operacionSelect.value;
+    const num2 = parseFloat(num2Input.value);
+    let resultado;
+
+    switch (operacion) {
+        case '+':
+            resultado = num1 + num2;
+            break;
+        case '-':
+            resultado = num1 - num2;
+            break;
+        case '*':
+            resultado = num1 * num2;
+            break;
+        case '/':
+            resultado = num1 / num2;
+            break;
         default:
-            return "Operación no valida";
+            resultado = 'Operación no válida';
     }
+
+    
+    resultadoP.textContent = `Resultado: ${resultado}`;
+
+    
+    const datos = {
+        num1,
+        operacion,
+        num2,
+        resultado
+    };
+    localStorage.setItem('calculadora', JSON.stringify(datos));
 }
 
-
-function buscarEnArray(arr, valor) {
-    return arr.indexOf(valor);
-}
-
-
-function filtrarArray(arr, predicado) {
-    return arr.filter(predicado);
+const datosStorage = localStorage.getItem('calculadora');
+if (datosStorage) {
+    const datos = JSON.parse(datosStorage);
+    num1Input.value = datos.num1;
+    operacionSelect.value = datos.operacion;
+    num2Input.value = datos.num2;
+    resultadoP.textContent = `Resultado: ${datos.resultado}`;
 }
