@@ -3,48 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Remgureton</title>
+    <title>Simulador de Parqueadero de Autos</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>REMUGRETONCITO</h1>
-        <nav>
-            <ul>
-                <li><a href="#">INICIO</a></li>
-                <li><a href="#">PRODUCTOS</a></li>
-                <li><a href="#">CONTACTO</a></li>
-            </ul>
-        </nav>
-    </header>
-    <main>
-        <section id="product-list">
-            <h2>Productos disponibles</h2>
-            <div class="product" data-price="5.99">
-            <h3>Lavandina</h3>
-            <span class="price">$5.99</span>
-            <div class="product" data-price="3.99"></div>
-            <h3>Perfumina</h3>
-            <span class="price">$3.99</span>
-            <div class="product" data-price="7.99"></div>
-            <h3>Jabon liquido</h3>
-            <span class="price">$7.99</span>
-            <button class="add-to-cart">Agregar al carrito</button>
-            </div>
-        </section>
-
-        <section id="cart">
-            <h2>CARRITO</h2>
-            <ul id="cart-items"></ul>
-            <p id="total">Total: $0.00</p>
-            <button id="checkout">Comprar</button>
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; 2024 REMUGRETONCITO</p>
-    </footer>
-
+    <h1>Simulador de Parqueadero de Autos</h1>
+    <div id="parking-lot"></div>
+    <h2>Agregar Auto</h2>
+    <input type="text" id="license-input" placeholder="Ingresa la patente" />
+    <select id="car-select"></select>
+    <button id="park-button">Estacionar</button>
+    <h2>Autos Estacionados</h2>
+    <div id="parked-cars"></div>
+    <h2>Total de Autos Estacionados Hoy: <span id="car-count">0</span></h2>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

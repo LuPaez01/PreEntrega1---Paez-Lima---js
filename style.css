@@ -1,66 +1,90 @@
-body{
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 0;
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
-header{
-    background-color: #498d9e;
-    color: #fff;
-    padding: 1rem;
+h1 {
     text-align: center;
+    color: #2c3e50;
 }
 
-nav ul{
-    list-style-type: none ;
-    padding: 0;
-}
-
-nav ul li{
-    display: inline;
-    margin: 0 1rem;
-}
-
-nav ul li a{
-    color: #fff;
-    text-decoration: none;
-}
-
-main{
+#parking-lot {
     display: flex;
-    justify-content: space-around;
-    padding: 1rem;
+    flex-wrap: wrap;
+    border: 2px solid #34495e;
+    width: 300px;
+    padding: 10px;
+    margin: 0 auto;
+    background-color: #ecf0f1;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.product h3{
-    margin:0;
-}
-
-.price{
-    display: block;
+.parking-space {
+    width: 80px;
+    height: 80px;
+    border: 2px dashed #7f8c8d;
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
     font-weight: bold;
-    margin: 1rem 0;
+    transition: background-color 0.3s ease;
 }
 
-button{
-    background-color: #28a745;
-    color: #fff;
-    border: none;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    border-radius: 5px;
+.parking-space:hover {
+    background-color: #bdc3c7;
 }
 
-button:hover{
-    background-color: #218838;
+.occupied {
+    background-color: #27ae60;
+    color: white;
 }
 
-footer{
-    background-color: #498d9e;
-    color: #fff;
+h2 {
+    margin-top: 20px;
     text-align: center;
-    padding: 1rem;
-    position:fixed;
-    bottom: 0;
+    color: #34495e;
+}
+
+button {
+    display: block;
     width: 100%;
+    padding: 10px;
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #3498db;
+}
+
+#car-select {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #34495e;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+#parked-cars {
+    background-color: #ecf0f1;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0 auto;
+    width: 300px;
+    text-align: center;
+}
+
+#car-count {
+    font-weight: bold;
+    color: #e74c3c;
 }

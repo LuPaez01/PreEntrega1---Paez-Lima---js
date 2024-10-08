@@ -1,33 +1,62 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const cartItems = document.getElementById('cart-items');
-    const totalElement = document.getElementById('total');
-    const checkoutButton = document.getElementById('checkout');
-    let total = 0;
+$(document).ready(function () {
+    const parkedCars = [];
 
-    document.querySelectorAll('.add-to-cart').forEach(button => {
-        button.addEventListener('click', () => {
-            const product = button.parentElement;
-            const productName = product.querySelector('h3').textContent;
-            const productPrice = parseFloat(product.getAttribute('data-price'));
-
-            total += productPrice;
-
-            const cartItem = document.createElement('li');
-            cartItem.textContent = ${productName} - $${productPrice.toFixed(2)};
-            cartItems.appendChild(cartItem);
-
-            totalElement.textContent = Total: $${total.toFixed(2)};
+    // Cargar los datos desde un archivo JSON usando AJAX
+    $.getJSON('vehicles.json', function (data) {
+        // Guardar los datos cargados en parkedCars
+        data.forEach(function (car) {
+            parkedCars.push(car);
         });
+
+        // Mostrar los autos que ya están estacionados
+        displayParkedCars();
     });
 
-    checkoutButton.addEventListener('click', () => {
-        if (total > 0) {
-            alert(Gracias por tu compra de $${total.toFixed(2)}. ¡Nos pondremos en contacto contigo pronto!);
-            cartItems.innerHTML = '';
-            total = 0;
-            totalElement.textContent = Total: $0.00;
-        } else {
-            alert('Tu carrito está vacío.');
-        }
+    // Array de tipos de vehículos
+    const carTypes = ["Auto", "Moto", "Camioneta", "Bicicleta"];
+
+    // Llenar el select con los tipos de vehículos
+    carTypes.forEach(function (type) {
+        $('#car-select').append(`<option value="${type}">${type}</option>`);
     });
+
+    // Evento cuando el botón de "Estacionar" es presionado
+    $('#park-button').on('click', function () {
+        const license = $('#license-input').val().toUpperCase();
+        const carType = $('#car-select').val();
+        
+        // Validar si el input de patente no está vacío
+        if (license === '') {
+            alert('Por favor, ingresa la patente del vehículo.');
+            return;
+        }
+
+        // Agregar el auto estacionado al array
+        const car = {
+            license: license,
+            type: carType
+        };
+
+        parkedCars.push(car);
+
+        // Mostrar los autos estacionados
+        displayParkedCars();
+
+        // Limpiar el input
+        $('#license-input').val('');
+    });
+
+    // Función para mostrar los autos estacionados
+    function displayParkedCars() {
+        // Limpiar la lista anterior
+        $('#parked-cars').empty();
+        
+        // Mostrar cada auto estacionado
+        parkedCars.forEach(function (car, index) {
+            $('#parked-cars').append(`<div>Auto ${index + 1}: Patente ${car.license}, Tipo ${car.type}</div>`);
+        });
+
+        // Actualizar el contador de autos estacionados
+        $('#car-count').text(parkedCars.length);
+    }
 });
